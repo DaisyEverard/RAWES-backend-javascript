@@ -4,7 +4,7 @@ const rows = {services: ['soil formation', 'Primary production', 'Nutrient cycli
 'Water recycling', 'provision of habitat']}
 
 /* GET users listing. */
-router.get('/', function(req, res, next) {
+router.get('/', (req, res, next) => {
   res.send(rows);
 });
 

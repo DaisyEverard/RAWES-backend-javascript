@@ -6,7 +6,7 @@ const rows = {services: ['Cultural heritage', 'Recreation and tourism', 'Aesthet
 ]}
 
 /* GET users listing. */
-router.get('/', function(req, res, next) {
+router.get('/', (req, res, next) => {
   res.send(rows);
 });
 

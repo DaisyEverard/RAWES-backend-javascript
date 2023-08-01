@@ -7,7 +7,7 @@ const rows = {services: ['Air quality regulation', 'Local climate regulation',
 'Pollination', 'Salinity regulation', 'Fire regulation', 'Noise and visual buffering']}
 
 /* GET users listing. */
-router.get('/', function(req, res, next) {
+router.get('/', (req, res, next) => {
   res.send(rows);
 });
 

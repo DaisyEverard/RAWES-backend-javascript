@@ -7,7 +7,7 @@ const rows = {services: ['Provision of fresh water', 'Provision of food',
 'Energy harvesting from natural air and water flows']}
 
 /* GET users listing. */
-router.get('/', function(req, res, next) {
+router.get('/', (req, res, next) => {
   res.send(rows);
 });
 
