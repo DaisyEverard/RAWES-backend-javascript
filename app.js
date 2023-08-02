@@ -5,10 +5,11 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var cors = require('cors'); 
 
-getTablePath = require('./routes/getTable'); 
+getTemplateRows = require('./routes/getTemplateRows'); 
 formHistoryRoute = require('./routes/formHistory');
 postRowRoute = require('./routes/postRow');
 removeFormRoute = require('./routes/removeForm'); 
+getTimestampsRoute = require('./routes/getTimestamps'); 
 
 var app = express();
 
@@ -23,10 +24,11 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/getTable', getTablePath); 
+app.use('/getTemplate', getTemplateRows); 
 app.use('/formHistory', formHistoryRoute); 
 app.use('/postRow', postRowRoute); 
 app.use('/removeForm', removeFormRoute); 
+app.use('/getTimestamps', getTimestampsRoute); 
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

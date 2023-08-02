@@ -55,10 +55,24 @@ console.log(query);
         })
     })
 }
+const getAllTimestamps = () => {
+    const query = `SELECT * FROM all_timestamps`;
+    
+    return new Promise(function (resolve, reject) {
+        client.query(query, (err, result) => {
+            if (err) {
+                return reject(err);
+            } else {
+                return resolve(result);
+            }
+        })
+    })
+}
 
 module.exports = {
     getTemplateRows,
     getDataByTimestamp,
     postFormRow,
-    removeForm
+    removeForm,
+    getAllTimestamps
 }
