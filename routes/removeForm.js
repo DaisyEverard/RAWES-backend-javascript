@@ -1,9 +1,10 @@
 var express = require('express');
-const { postNewRow } = require('../api');
+const { removeForm } = require('../api');
 var router = express.Router();
 
 router.post('/', (request, response) => {
-    postNewRow(request.body)
+    console.log(request.body); 
+    removeForm(request.body.timestamp)
     .then((result) => {response.send(result); })
     .catch((err) => {response.send(err); })
 })
