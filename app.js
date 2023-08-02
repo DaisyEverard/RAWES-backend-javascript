@@ -9,6 +9,8 @@ culturalRoute = require('./routes/cultural');
 provisioningRoute = require('./routes/provisioning');
 regulatingRoute = require('./routes/regulating');
 supportingRoute = require('./routes/supporting');
+formHistoryRoute = require('./routes/formHistory');
+postRowRoute = require('./routes/postRow');
 
 var app = express();
 
@@ -27,6 +29,8 @@ app.use('/cultural', culturalRoute);
 app.use('/provisioning', provisioningRoute);
 app.use('/regulating', regulatingRoute);
 app.use('/supporting', supportingRoute);
+app.use('/formHistory', formHistoryRoute); 
+app.use('/postRow', postRowRoute); 
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

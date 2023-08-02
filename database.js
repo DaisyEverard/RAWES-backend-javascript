@@ -9,15 +9,3 @@ const client = new Client({
 )
 client.connect();
 module.exports.myConnection = client; 
-
-// client.query(`SELECT * FROM cultural_setup`, (err, res) => {
-//     if (!err) {
-//         console.log(res.rows);
-        
-//     } else {
-//         console.error(err.message); 
-//     }
-//     client.end(); 
-// })
-
-// sudo service postgresql start/stop/status
