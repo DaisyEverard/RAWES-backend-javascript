@@ -1,13 +1,13 @@
 var express = require('express');
+const checkAPI = require('../api'); 
 var router = express.Router();
-const rows = {services: ['Cultural heritage', 'Recreation and tourism', 'Aesthetic value',
-'Spritual and religious value', 'Insipiration value', 'Social relations', 
-'Education and research'
-]}
 
 /* GET users listing. */
-router.get('/', (req, res, next) => {
-  res.send(rows);
+router.get('/', function(request, response, next) {
+  const table = 'cultural_setup';
+  checkAPI.checkAPI(table)
+  .then((result) => { response.send(result); })
+  .catch((err) => {response.send(err); })
 });
 
 module.exports = router;

@@ -1,14 +1,12 @@
 var express = require('express');
+const checkAPI = require('../api'); 
 var router = express.Router();
-const rows = {services: ['Provision of fresh water', 'Provision of food',
-'Provision of fibre', 'Provision of fuel', 'Provision of genetic resources',
-'Provision of natural medicines and pharmaceuticals', 'Provision of ornamental resources',
-'Clay, mineral, aggregate harvesting', 'Waste disposal', 
-'Energy harvesting from natural air and water flows']}
 
-/* GET users listing. */
-router.get('/', (req, res, next) => {
-  res.send(rows);
+router.get('/', function(request, response, next) {
+  const table = 'provisioning_setup';
+  checkAPI.checkAPI(table)
+  .then((result) => { response.send(result); })
+  .catch((err) => {response.send(err); })
 });
 
 module.exports = router;

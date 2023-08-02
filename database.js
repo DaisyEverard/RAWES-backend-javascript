@@ -7,13 +7,17 @@ const client = new Client({
     database: "rawes_db"
 }
 )
-
 client.connect();
-client.query(`SELECT * FROM cultural_setup`, (err, res) => {
-    if (!err) {
-        console.log(res.rows);
-    } else {
-        console.error(err.message); 
-    }
-    client.end; 
-})
+module.exports.myConnection = client; 
+
+// client.query(`SELECT * FROM cultural_setup`, (err, res) => {
+//     if (!err) {
+//         console.log(res.rows);
+        
+//     } else {
+//         console.error(err.message); 
+//     }
+//     client.end(); 
+// })
+
+// sudo service postgresql start/stop/status

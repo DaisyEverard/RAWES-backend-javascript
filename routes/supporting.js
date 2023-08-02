@@ -1,11 +1,14 @@
 var express = require('express');
+const checkAPI = require('../api'); 
 var router = express.Router();
-const rows = {services: ['soil formation', 'Primary production', 'Nutrient cycling',
-'Water recycling', 'provision of habitat']}
 
 /* GET users listing. */
-router.get('/', (req, res, next) => {
-  res.send(rows);
+router.get('/', function(request, response, next) {
+  const table = 'supporting_setup';
+  checkAPI.checkAPI(table)
+  .then((result) => { response.send(result); })
+  .catch((err) => {response.send(err); })
 });
 
 module.exports = router;
+

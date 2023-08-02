@@ -1,14 +1,13 @@
 var express = require('express');
+const checkAPI = require('../api'); 
 var router = express.Router();
-const rows = {services: ['Air quality regulation', 'Local climate regulation',
-'Global climate regulation', 'Water regulation', 'Flood hazard regulation',
-'Storm hazard regulation', 'Pest regulation', 'Regulation of human diseases',
-'Regulation of diseases affecting livestock', 'Erosion regulation', 'Water purification',
-'Pollination', 'Salinity regulation', 'Fire regulation', 'Noise and visual buffering']}
 
 /* GET users listing. */
-router.get('/', (req, res, next) => {
-  res.send(rows);
+router.get('/', function(request, response, next) {
+  const table = 'regulating_setup';
+  checkAPI.checkAPI(table)
+  .then((result) => { response.send(result); })
+  .catch((err) => {response.send(err); })
 });
 
 module.exports = router;
