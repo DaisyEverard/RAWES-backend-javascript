@@ -1,11 +1,11 @@
 var express = require('express');
-const {selectAllFromTable} = require('../api'); 
+const {getTemplateRows} = require('../api'); 
 var router = express.Router();
 
 /* GET users listing. */
-router.get('/:tableName', function(request, response, next) {
-  const table = request.params.tableName + '_setup';
-  selectAllFromTable(table)
+router.get('/:serviceType', function(request, response, next) {
+  const table = request.params.serviceType;
+  getTemplateRows(table)
   .then((result) => { response.send(result); })
   .catch((err) => {response.send(err); })
 });

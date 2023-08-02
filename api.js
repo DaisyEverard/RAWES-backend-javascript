@@ -1,7 +1,7 @@
 const dbConnect = require('./database');
 const client = dbConnect.myConnection;
-const selectAllFromTable = (table) => {
-    const query = `SELECT * FROM ${table}`;
+const getTemplateRows = (service) => {
+    const query = `SELECT * FROM template_services WHERE service_type='${service}'`;
     
     return new Promise(function (resolve, reject) {
         client.query(query, (err, result) => {
@@ -26,8 +26,9 @@ const getDataByTimestamp = (timestamp) => {
         })
     })
 }
-const postNewRow = (data) => {
-    const query = `INSERT INTO form_history VALUES ('${data.timestamp}', '${data.serviceType}', '${data.name}', ${data.value})`;
+const postFormRow = (data) => {
+    const query = `INSERT INTO form_history VALUES ('${data.timestamp}', '${data.serviceType}', '${data.name}', ${data.value});
+    INSERT INTO all_timestamps (timestamp) VALUES ('${data.timestamp}')`;
 
     return new Promise(function (resolve, reject) {
         client.query(query, (err, result) => {
@@ -40,7 +41,8 @@ const postNewRow = (data) => {
     })
 }
 const removeForm = (timestamp) => {
-    const query = `DELETE FROM form_history WHERE timestamp='${timestamp}'`;
+    const query = `DELETE FROM form_history WHERE timestamp='${timestamp}';
+    DELETE FROM all_timestamps WHERE timestamp='${timestamp}'`;
 console.log(query);
 
     return new Promise(function (resolve, reject) {
@@ -55,8 +57,8 @@ console.log(query);
 }
 
 module.exports = {
-    selectAllFromTable,
+    getTemplateRows,
     getDataByTimestamp,
-    postNewRow,
+    postFormRow,
     removeForm
 }
