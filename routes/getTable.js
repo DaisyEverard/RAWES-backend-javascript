@@ -3,8 +3,8 @@ const {selectAllFromTable} = require('../api');
 var router = express.Router();
 
 /* GET users listing. */
-router.get('/', function(request, response, next) {
-  const table = 'cultural_setup';
+router.get('/:tableName', function(request, response, next) {
+  const table = request.params.tableName + '_setup';
   selectAllFromTable(table)
   .then((result) => { response.send(result); })
   .catch((err) => {response.send(err); })
