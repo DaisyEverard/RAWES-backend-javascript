@@ -42,7 +42,20 @@ const postFormRow = (data) => {
 const removeForm = (timestamp) => {
     const query = `DELETE FROM form_history WHERE timestamp='${timestamp}';
     DELETE FROM form_metadata WHERE timestamp='${timestamp}'`;
-console.log(query);
+
+    return new Promise(function (resolve, reject) {
+        client.query(query, (err, result) => {
+            if (err) {
+                return reject(err);
+            } else {
+                return resolve(result);
+            }
+        })
+    })
+}
+const removeAllForms = () => {
+    const query = `DELETE FROM form_history;
+    DELETE FROM form_metadata`;
 
     return new Promise(function (resolve, reject) {
         client.query(query, (err, result) => {
@@ -86,6 +99,7 @@ module.exports = {
     getDataByTimestamp,
     postFormRow,
     removeForm,
+    removeAllForms,
     getFormMetadata,
     postFormMetadata
 }
