@@ -9,8 +9,8 @@ getTemplateRows = require('./routes/getTemplateRows');
 formHistoryRoute = require('./routes/formHistory');
 postRowRoute = require('./routes/postRow');
 removeFormRoute = require('./routes/removeForm'); 
-getTimestampsRoute = require('./routes/getTimestamps'); 
-
+getMetadataRoute = require('./routes/getFormMetadata'); 
+postMetadataRoute = require('./routes/postFormMetadata'); 
 var app = express();
 
 // view engine setup
@@ -28,7 +28,8 @@ app.use('/getTemplate', getTemplateRows);
 app.use('/formHistory', formHistoryRoute); 
 app.use('/postRow', postRowRoute); 
 app.use('/removeForm', removeFormRoute); 
-app.use('/getTimestamps', getTimestampsRoute); 
+app.use('/getMetadata', getMetadataRoute); 
+app.use('/postMetadata', postMetadataRoute); 
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
