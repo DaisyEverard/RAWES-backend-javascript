@@ -1,9 +1,16 @@
 var express = require('express');
-const { postFormRow } = require('../api');
+const { sendQueryToDB } = require('../api');
 var router = express.Router();
 
 router.post('/', (request, response) => {
-    postFormRow(request.body)
+    const timestamp = request.body.timestamp; 
+    const serviceType = request.body.serviceType;
+    const name = request.body.name;
+    const value = request.body.value; 
+    const query = `INSERT INTO form_history VALUES ('${timestamp}', 
+    '${serviceType}', '${name}', ${value});`;
+
+    sendQueryToDB(query)
     .then((result) => {response.send(result); })
     .catch((err) => {response.send(err); })
 })

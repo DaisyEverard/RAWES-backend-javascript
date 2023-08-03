@@ -1,10 +1,11 @@
 var express = require('express');
-const {getFormMetadata} = require('../api'); 
+const {getFormMetadata, sendQueryToDB} = require('../api'); 
 var router = express.Router();
 
 /* GET users listing. */
 router.get('/', function(request, response, next) {
-  getFormMetadata()
+  const query = `SELECT * FROM form_metadata`;
+  sendQueryToDB(query)
   .then((result) => { response.send(result); })
   .catch((err) => {response.send(err); })
 });

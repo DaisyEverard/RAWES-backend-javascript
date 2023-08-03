@@ -1,9 +1,11 @@
 var express = require('express');
-const { removeAllForms } = require('../api');
+const { sendQueryToDB } = require('../api');
 var router = express.Router();
 
 router.post('/', (request, response) => {
-    removeAllForms()
+    const query = `DELETE FROM form_history;
+    DELETE FROM form_metadata`;
+    sendQueryToDB(query)
     .then((result) => {response.send(result); })
     .catch((err) => {response.send(err); })
 })
