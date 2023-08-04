@@ -1,5 +1,5 @@
 var express = require('express');
-const { sendQueryToDB } = require('../api');
+const { sendQueryToDB } = require('../database'); 
 var router = express.Router();
 
 router.post('/', (request, response) => {

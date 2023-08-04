@@ -1,5 +1,5 @@
 var express = require('express');
-const {getFormMetadata, sendQueryToDB} = require('../api'); 
+const { sendQueryToDB } = require('../database'); 
 var router = express.Router();
 
 /* GET users listing. */

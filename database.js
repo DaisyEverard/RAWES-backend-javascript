@@ -9,3 +9,19 @@ const client = new Client({
 )
 client.connect();
 module.exports.myConnection = client; 
+
+const sendQueryToDB = (query) => {
+    return new Promise(function (resolve, reject) {
+       client.query(query, (err, result) => {
+           if (err) {
+               return reject(err);
+           } else {
+               return resolve(result);
+           }
+       })
+   })
+}
+
+module.exports = {
+   sendQueryToDB
+}
