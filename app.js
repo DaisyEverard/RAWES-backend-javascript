@@ -5,13 +5,16 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var cors = require('cors'); 
 
+// GET
 getTemplateRows = require('./routes/getTemplateRows'); 
-formHistoryRoute = require('./routes/formHistory');
-postRowRoute = require('./routes/postRow');
-removeFormRoute = require('./routes/removeForm'); 
+getFormHistoryRoute = require('./routes/getFormHistory');
 getMetadataRoute = require('./routes/getFormMetadata'); 
-postMetadataRoute = require('./routes/postFormMetadata'); 
-removeAllFormsRoute = require('./routes/removeAllForms'); 
+// PUT
+putRowRoute = require('./routes/putRow');
+putMetadataRoute = require('./routes/putFormMetadata'); 
+// DELETE
+deleteFormRoute = require('./routes/deleteForm'); 
+deleteAllFormsRoute = require('./routes/deleteAllForms'); 
 var app = express();
 
 // view engine setup
@@ -25,13 +28,16 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// GET
 app.use('/getTemplate', getTemplateRows); 
-app.use('/formHistory', formHistoryRoute); 
-app.use('/postRow', postRowRoute); 
-app.use('/removeForm', removeFormRoute); 
+app.use('/getFormHistory', getFormHistoryRoute); 
 app.use('/getMetadata', getMetadataRoute); 
-app.use('/postMetadata', postMetadataRoute); 
-app.use('/removeAllForms', removeAllFormsRoute);
+// PUT
+app.use('/putRow', putRowRoute); 
+app.use('/putMetadata', putMetadataRoute); 
+// DELETE
+app.use('/deleteForm', deleteFormRoute); 
+app.use('/deleteAllForms', deleteAllFormsRoute);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
