@@ -8,7 +8,6 @@ const client = new Client({
 }
 )
 client.connect();
-module.exports.myConnection = client; 
 
 const sendQueryToDB = (query) => {
     return new Promise(function (resolve, reject) {
