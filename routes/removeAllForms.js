@@ -2,7 +2,7 @@ var express = require('express');
 const { sendQueryToDB } = require('../api');
 var router = express.Router();
 
-router.post('/', (request, response) => {
+router.delete('/', (request, response) => {
     const query = `DELETE FROM form_history;
     DELETE FROM form_metadata`;
     sendQueryToDB(query)
