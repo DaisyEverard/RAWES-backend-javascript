@@ -5,16 +5,10 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var cors = require('cors'); 
 
-// GET
-getTemplateRows = require('./routes/getTemplateRows'); 
-getFormHistoryRoute = require('./routes/getFormHistory');
-getMetadataRoute = require('./routes/getFormMetadata'); 
-// PUT
-putRowRoute = require('./routes/putRow');
-putMetadataRoute = require('./routes/putFormMetadata'); 
-// DELETE
-deleteFormRoute = require('./routes/deleteForm'); 
-deleteAllFormsRoute = require('./routes/deleteAllForms'); 
+formHistoryRoute = require('./routes/formHistory'); 
+templateRoute = require('./routes/template'); 
+allFormsRoute = require('./routes/allForms'); 
+metadataRoute = require('./routes/formMetadata');
 var app = express();
 
 // view engine setup
@@ -28,16 +22,12 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// GET
-app.use('/getTemplate', getTemplateRows); 
-app.use('/getFormHistory', getFormHistoryRoute); 
-app.use('/getMetadata', getMetadataRoute); 
-// PUT
-app.use('/putRow', putRowRoute); 
-app.use('/putMetadata', putMetadataRoute); 
-// DELETE
-app.use('/deleteForm', deleteFormRoute); 
-app.use('/deleteAllForms', deleteAllFormsRoute);
+// don't use methods in route name
+// prisma - sql queries
+app.use('/formHistory', formHistoryRoute); 
+app.use('/templates', templateRoute); 
+app.use('/formMetadata', metadataRoute); 
+app.use('/allForms', allFormsRoute);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
